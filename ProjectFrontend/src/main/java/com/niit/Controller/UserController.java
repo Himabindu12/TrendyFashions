@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.niit.Dao.UserDao;
+import com.niit.model.Billing;
+import com.niit.model.Cart;
 import com.niit.model.User;
 @Controller
 public class UserController {
@@ -28,8 +30,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/adduser", method=RequestMethod.POST)
-	public ModelAndView addproduct(@ModelAttribute("user")User user ) {
-		ModelAndView obj = new ModelAndView("redirect:/signup");
+	public ModelAndView adduser(@ModelAttribute("user")User user ) {
+		ModelAndView obj = new ModelAndView("redirect:/");
+		Cart cart= new Cart();
+		user.setCart(cart);
+		Billing bill= new Billing();
+		user.setBilling(bill);
 		if(userDao.saveorupdate(user))
 		{
 	       obj.addObject("msg","user is added successfuly");  		

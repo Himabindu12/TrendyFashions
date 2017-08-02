@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 import com.niit.Dao.UserDao;
+import com.niit.model.Authentication;
 import com.niit.model.User;
 
 @Repository("userDao")
@@ -26,7 +27,17 @@ public class UserDaoImpl implements UserDao{
 	@Transactional
 	public boolean saveorupdate(User user) 
 	{
+		Authentication authentication= new Authentication();
+		authentication.setUsername(user.getUmail());
+		user.getBilling().setUser(user);
+		user.getBilling().setMobile(user.getMobile());
+		user.getBilling().setEmail(user.getUmail());
+		user.getBilling().setCity(user.getUaddress());
+		sessionFactory.getCurrentSession().saveOrUpdate(user.getBilling());
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
+		sessionFactory.getCurrentSession().saveOrUpdate(user.getCart());
+		sessionFactory.getCurrentSession().saveOrUpdate(authentication);
+		
 		return true;
 	}
 	@Transactional
@@ -55,7 +66,31 @@ public class UserDaoImpl implements UserDao{
 
 		
 	}
+	@Transactional
+	public User isvalid(String email, String pwd) {
+		String q1="from User where u_email='"+email+"'and u_psw='"+pwd+"'";
+		Query w = sessionFactory.getCurrentSession().createQuery(q1);
+		List<User> list = (List<User>) w.list();
+		if (list == null || list.isEmpty()) 
+		{
+			return null;
+		}
+		   return list.get(0);
+	   }
+	@Transactional
+	public User getUseremail(String email) {
+		String q1="from User where u_email='"+email+"'";
+		Query w = sessionFactory.getCurrentSession().createQuery(q1);
+		@SuppressWarnings("unchecked")
+		List<User> list = (List<User>) w.list();
+		if (list == null || list.isEmpty()) 
+		{
+			return null;
+		}
+		   return list.get(0);
+	   }
+	}
 	
-}
+
 
 

@@ -1,7 +1,12 @@
 package com.niit.model;
 
+import java.util.UUID;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -19,6 +24,15 @@ public class Billing {
 	private String pincode;
 	private String mobile;
 	private String email;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="uid")
+	User user;
+	
+	public Billing() {
+		
+		this.billId ="BILL"+UUID.randomUUID().toString().substring(30).toUpperCase();
+	}
 	public String getBillId() {
 		return billId;
 	}
@@ -60,6 +74,12 @@ public class Billing {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

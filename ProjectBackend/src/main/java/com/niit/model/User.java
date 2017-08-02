@@ -1,5 +1,7 @@
 package com.niit.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -20,8 +22,24 @@ public class User {
     private String uaddress;
     private String umail;
     private String mobile;
+    private String role="ROLE_USER";
     @OneToOne
     @JoinColumn(name="Billing_Id")
+    private Billing billing;
+    
+    @OneToOne
+    @JoinColumn(name="cartId")
+    private Cart cart;
+public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+public User() {
+		
+		this.uid ="USD"+UUID.randomUUID().toString().substring(30).toUpperCase();
+	}
 	public String getUid() {
 		return uid;
 	}
@@ -57,6 +75,18 @@ public class User {
 	}
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+	public Billing getBilling() {
+		return billing;
+	}
+	public void setBilling(Billing billing) {
+		this.billing = billing;
+	}
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
     
     
