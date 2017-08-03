@@ -2,6 +2,8 @@ package com.niit.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -16,6 +18,15 @@ public class Card {
 	private String cardnumber;
 	private String cardholdername;
 	private String cardexpirydate;
+	@ManyToOne
+	@JoinColumn(name="uid")
+	private User user;
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public String getCardId() {
 		return cardId;
 	}

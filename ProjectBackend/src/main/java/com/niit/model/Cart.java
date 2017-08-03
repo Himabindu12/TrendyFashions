@@ -1,10 +1,12 @@
 package com.niit.model;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,7 +24,15 @@ public class Cart {
 	
 	@OneToOne
     @JoinColumn(name="uid")
-    private User user;
+	@OneToMany(mappedBy="cart")
+	private List<CartItems>cartItems;
+    public List<CartItems> getCartItems() {
+		return cartItems;
+	}
+	public void setCartItems(List<CartItems> cartItems) {
+		this.cartItems = cartItems;
+	}
+	private User user;
 	public Cart() {
 		
 		this.cartId ="CART"+UUID.randomUUID().toString().substring(30).toUpperCase();
