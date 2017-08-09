@@ -18,12 +18,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-  <script>
- var app = angular.module('myApp', []);
- app.controller('myCtrl', function($scope, $http){
-	 $http.get("http://localhost:8019/kingfisherfrontend/SendMail")
-	 });
- </script>
+ 
  </head>
  <style>
  li a:hover:not(.active) {
@@ -82,7 +77,7 @@ legend
       </c1:if>
       <c1:if test="${pageContext.request.userPrincipal.name!=null}">
       welcome ${pageContext.request.userPrincipal.name}
-      <li><a href="<c:url value="/logout"/>" style="color:white"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      <li><a href="<c:url value="/j_spring_security_logout"/>" style="color:white"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </c1:if>
       <li><a href="<c:url value="/cart"/>" style="color:white"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
     

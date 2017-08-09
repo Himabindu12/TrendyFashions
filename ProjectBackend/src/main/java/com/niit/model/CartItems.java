@@ -2,6 +2,7 @@ package com.niit.model;
 
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -21,7 +22,7 @@ public class CartItems {
 	@ManyToOne
 	@JoinColumn(name="cartId")
 	private Cart cart;
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="prodId")
 	private Product product;
 	public CartItems() {

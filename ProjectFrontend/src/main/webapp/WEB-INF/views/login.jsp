@@ -34,7 +34,7 @@ fieldset {
     margin-left: 500px;
     margin-right: 500px;
     padding:25px;
-    border: 2px solid pink;
+    border: 2px solid black;
 }
 
 legend
@@ -44,8 +44,8 @@ legend
 }
 	</style>
 </head>
-
-<body style="background-color:light pink">
+<body background="${img}/bcg.jpg">
+<!-- <body style="background-color:light pink"> -->
 
 <nav class="navbar navbar-inverse" style="background-color:crimson">
   <div class="container-fluid">
@@ -79,7 +79,7 @@ legend
       </c1:if>
       <c1:if test="${pageContext.request.userPrincipal.name!=null}">
       welcome ${pageContext.request.userPrincipal.name}
-      <li><a href="<c:url value="/logout"/>" style="color:white"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      <li><a href="<c:url value="/j_spring_security_logout"/>" style="color:white"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </c1:if>
       <li><a href="<c:url value="/cart"/>" style="color:white"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
     

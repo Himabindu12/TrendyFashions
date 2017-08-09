@@ -68,9 +68,13 @@ public class ProductController {
 	public ModelAndView edit(@PathVariable("prodId")String id)
 	{
 		System.out.println(123);
+		List<Category> listcategory=categoryDao.list();
+		List<Supplier> listsupplier=supplierDao.list();
 		List<Product>listproduct=productDao.list();
 		ModelAndView obj = new ModelAndView("addproduct");
 		product=productDao.get(id);
+		obj.addObject("categories", listcategory);
+		obj.addObject("suppliers", listsupplier);
 		obj.addObject("products",listproduct);
 		obj.addObject("product",product);
 		return obj;

@@ -92,7 +92,7 @@ import com.niit.model.User;
 		
 		String o;
 		
-
+		
 		@RequestMapping("/Buyall")
 		public String orderall(Model model,HttpSession session) {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -100,14 +100,12 @@ import com.niit.model.User;
 				String currusername = authentication.getName();
 				user = userDao.getUseremail(currusername);
 				cart = user.getCart();
-				product=null;
-				 CartItems cs = cartItemsDao.get(cart.getCartId());
-				if(cs==null)
-				{
-					return "redirect:/viewcart";
-				}
-				else
-				{
+				
+				
+//				session.setAttribute("products", product1);			
+				cartItems= cartItemsDao.get(cart.getCartId());
+			
+					
 					billing = billingDao.get(user.getUid());
 					List<Shipping> shippingAddresies = shippingDao.getaddbyuser(user.getUid());
 					
@@ -118,11 +116,9 @@ import com.niit.model.User;
 					session.setAttribute("p", product);
 				}
 				return "addressorder";
-			} else {
-				return "redirect:/";
-			}
-
-		}
+			} 
+		
+		
 
 		@RequestMapping("/Buy/{p_id}/{ci_id}")
 		public String order(@PathVariable("p_id") String id, Model model,HttpSession session) {

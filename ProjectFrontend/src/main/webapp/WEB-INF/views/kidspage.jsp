@@ -62,7 +62,7 @@ legend
       <li><a href="<c:url value="/aboutus"/>" style="color:white">About Us</a></li>
 	   <li><a href="<c:url value="/contactus"/>" style="color:white">Contact Us</a></li>
 	   <c1:if test="${pageContext.request.userPrincipal.name!=null}">
-	   <security:authorize access="hasRole('ROLE_ADMIN)">
+	   <security:authorize access="hasRole('ROLE_ADMIN')">
 	    <li><a href="<c:url value="/category"/>" style="color:white">Add Category</a></li>
       <li><a href="<c:url value="/supplier"/>" style="color:white">Add Supplier</a></li>
 	   <li><a href="<c:url value="/product"/>" style="color:white">Add Product</a></li>
@@ -79,7 +79,7 @@ legend
       </c1:if>
       <c1:if test="${pageContext.request.userPrincipal.name!=null}">
       welcome ${pageContext.request.userPrincipal.name}
-      <li><a href="<c:url value="/logout"/>" style="color:white"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      <li><a href="<c:url value="/j_spring_security_logout"/>" style="color:white"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </c1:if>
       <li><a href="<c:url value="/cart"/>" style="color:white"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
     

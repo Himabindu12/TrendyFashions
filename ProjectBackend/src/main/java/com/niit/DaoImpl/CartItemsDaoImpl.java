@@ -31,7 +31,9 @@ public class CartItemsDaoImpl implements CartItemsDao{
 	}
 	@Transactional
 	public boolean delete(String crtId){
-		sessionFactory.getCurrentSession().delete(crtId);
+		CartItems ci= new CartItems();
+		ci.setCarId(crtId);
+		sessionFactory.getCurrentSession().delete(ci);
 		return true;
 	}
 	@Transactional
@@ -58,7 +60,7 @@ public class CartItemsDaoImpl implements CartItemsDao{
 	@Override
 	public List<CartItems> getlist(String cartId)
 	{
-		String Sq1="From CartItems where cartId='"+cartId+"'";
+		String Sq1="from CartItems where cartId='"+cartId+"'";
 		Query q1=sessionFactory.getCurrentSession().createQuery(Sq1);
 		@SuppressWarnings("unchecked")
 		List<CartItems> list=(List<CartItems>)q1.list();

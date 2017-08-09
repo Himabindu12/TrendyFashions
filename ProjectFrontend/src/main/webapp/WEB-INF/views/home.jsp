@@ -98,7 +98,7 @@
                         <div class="row">
                             <!-- Slide Text Layer -->
                             <div class="slide-text slide_style_left">
-                                <h1 data-animation="animated zoomInRight" style="font-size:50px">Express your style <br>with all new trends </h1>
+                                <h1 data-animation="animated zoomInRight" style="font-size:50px">Express your style <br>with the All new prints </h1>
                                 <br>
                                 <a href="#" target="_blank" class="btn btn-default" data-animation="animated fadeInLeft">Show now</a>
                                
@@ -106,25 +106,13 @@
                         </div>
                     </div>
                 </div>
-                <!-- End of Slide -->
-
-                <!-- Second Slide -->
+                
                 <div class="item">
 
                     <!-- Slide Background -->
                     <img src="${img}/women.jpg" alt="Bootstrap Touch Slider"  class="slide-image"/>
                     <div class="bs-slider-overlay"></div>
-                    <!-- Slide Text Layer -->
-                    <!--<div class="slide-text slide_style_center">
-                        <h1 data-animation="animated flipInX">Bootstrap touch slider</h1>
-                        <p data-animation="animated lightSpeedIn">Make Bootstrap Better together.</p>
-                        <a href="http://bootstrapthemes.co/" target="_blank" class="btn btn-default" data-animation="animated fadeInUp">select one</a>
-                        <a href="http://bootstrapthemes.co/" target="_blank"  class="btn btn-primary" data-animation="animated fadeInDown">select two</a>
-                    </div>-->
-                </div>
-                <!-- End of Slide -->
-
-                <!-- Third Slide -->
+                    
                 <div class="item">
 
                     <!-- Slide Background -->
@@ -155,36 +143,484 @@
             </a>
 
         </div> 
-        <div class="well well-small" >
-	<h3>New Products </h3>
-	<hr class="soften"/>
-		<div class="row-fluid">
-		<div id="newProductCar" class="carousel slide">
-            <div class="carousel-inner">
-			<div class="item active">
-			  <ul class="thumbnails">
-			  <c1:forEach var="pro" items="${prods}">
-				<li class="span3">
-				<div class="thumbnail">
-				
-					<a class="zoomTool" href="<c:url value="/addtocart/${pro.getProdId()}"/>" title="add to cart"><span class="icon-shopping-cart"></span> Add to cart</a>
-					<a href="#" class="tag"></a>
-					<a href="<c:url value="/viewpro/${pro.getProdId()}"/>" title="quick view">
-					<img src="${img}/${pro.getProdId()}.jpg" alt="bootstrap-ring"></a>
-					<h3>${pro.getProdName()}            &nbsp;  &nbsp;  &nbsp; ${pro.getPrice()}</h3>
-					
-				</div></c1:forEach>
-				</li>
-
-				</li>
-			  </ul>
-			  </div>		
-				</div>
-		   </div>
-		  <a class="left carousel-control" href="#newProductCar" data-slide="prev">&lsaquo;</a><!-- Cycling of images-->
-            <a class="right carousel-control" href="#newProductCar" data-slide="next">&rsaquo;</a>
-		  </div>
-		  </div>
-		
+        </div>
+		<div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col-md-9">
+                <h3>
+                    New Trends</h3>
+            </div>
+          
+            <div class="col-md-3">
+                <!-- Controls -->
+                 
+                <div class="controls pull-right hidden-xs">
+                    <a class="left fa fa-chevron-left btn btn-danger" href="#carousel-example"
+                        data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-danger" href="#carousel-example"
+                            data-slide="next"></a>
+                </div>
+            </div>
+        </div>
+          
+        <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel" style="background-color:#800420">
+            <!-- Wrapper for slides -->
+           
+            <div class="carousel-inner" >
+                <div class="item active">
+                    <div class="row">
+                    <c1:forEach var="pro" items="${prods}">
+                        <div class="col-sm-3">
+                        
+                            <div class="col-item">
+                            
+                                <div class="photo">
+                                    <img src="${img}/${pro.getProdId()}.jpg" class="img-responsive" alt="a"  width="200px" height="200px"/>
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="price col-md-6">
+                                            <h5>
+                                                ${pro.getProdName()}</h5>
+                                            <h5 class="price-text-color">
+                                                ${pro.getPrice()}</h5>
+                                        </div>
+                                        <div class="rating hidden-sm col-md-6">
+                                            <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                                            </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                                            </i><i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-shopping-cart"></i><a href="<c:url value="/addtocart/${pro.getProdId()}"/>" class="hidden-sm">Add to cart</a></p>
+                                        <p class="btn-details">
+                                            <i class="fa fa-list"></i><a href="<c:url value="/viewpro/${pro.getProdId()}"/>">View</a></p>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                          </div>
+                            </div>
+                            </c1:forEach>
+                        </div></div></div></div></div></div>
+<!--                         <div class="col-sm-3"> -->
+<!--                             <div class="col-item"> -->
+<!--                                 <div class="photo"> -->
+<!--                                     <img src="product/m1.jpg" class="img-responsive" alt="a" height=100px /> -->
+<!--                                 </div> -->
+<!--                                 <div class="info"> -->
+<!--                                     <div class="row"> -->
+<!--                                         <div class="price col-md-6"> -->
+<!--                                             <h5> -->
+<!--                                                 Product Example</h5> -->
+<!--                                             <h5 class="price-text-color"> -->
+<!--                                                 $249.99</h5> -->
+<!--                                         </div> -->
+<!--                                         <div class="rating hidden-sm col-md-6"> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="separator clear-left"> -->
+<!--                                         <p class="btn-add"> -->
+<!--                                             <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p> -->
+<!--                                         <p class="btn-details"> -->
+<!--                                             <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p> -->
+<!--                                     </div> -->
+<!--                                     <div class="clearfix"> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="col-sm-3"> -->
+<!--                             <div class="col-item"> -->
+<!--                                 <div class="photo"> -->
+<!--                                     <img src="product/p2.jpg" class="img-responsive" alt="a" /> -->
+<!--                                 </div> -->
+<!--                                 <div class="info"> -->
+<!--                                     <div class="row"> -->
+<!--                                         <div class="price col-md-6"> -->
+<!--                                             <h5> -->
+<!--                                                 Next Sample Product</h5> -->
+<!--                                             <h5 class="price-text-color"> -->
+<!--                                                 $149.99</h5> -->
+<!--                                         </div> -->
+<!--                                         <div class="rating hidden-sm col-md-6"> -->
+<!--                                             <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="fa fa-star"></i> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="separator clear-left"> -->
+<!--                                         <p class="btn-add"> -->
+<!--                                             <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p> -->
+<!--                                         <p class="btn-details"> -->
+<!--                                             <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p> -->
+<!--                                     </div> -->
+<!--                                     <div class="clearfix"> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="col-sm-3"> -->
+<!--                             <div class="col-item"> -->
+<!--                                 <div class="photo"> -->
+<!--                                     <img src="product/m2.jpg" class="img-responsive" alt="a" /> -->
+<!--                                 </div> -->
+<!--                                 <div class="info"> -->
+<!--                                     <div class="row"> -->
+<!--                                         <div class="price col-md-6"> -->
+<!--                                             <h5> -->
+<!--                                                 Sample Product</h5> -->
+<!--                                             <h5 class="price-text-color"> -->
+<!--                                                 $199.99</h5> -->
+<!--                                         </div> -->
+<!--                                         <div class="rating hidden-sm col-md-6"> -->
+<!--                                             <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="fa fa-star"></i> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="separator clear-left"> -->
+<!--                                         <p class="btn-add"> -->
+<!--                                             <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p> -->
+<!--                                         <p class="btn-details"> -->
+<!--                                             <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p> -->
+<!--                                     </div> -->
+<!--                                     <div class="clearfix"> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="item"> -->
+<!--                     <div class="row"> -->
+<!--                         <div class="col-sm-3"> -->
+<!--                             <div class="col-item"> -->
+<!--                                 <div class="photo"> -->
+<!--                                     <img src="product/p3.jpg" class="img-responsive" alt="a" /> -->
+<!--                                 </div> -->
+<!--                                 <div class="info"> -->
+<!--                                     <div class="row"> -->
+<!--                                         <div class="price col-md-6"> -->
+<!--                                             <h5> -->
+<!--                                                 Product with Variants</h5> -->
+<!--                                             <h5 class="price-text-color"> -->
+<!--                                                 $199.99</h5> -->
+<!--                                         </div> -->
+<!--                                         <div class="rating hidden-sm col-md-6"> -->
+<!--                                             <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="fa fa-star"></i> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="separator clear-left"> -->
+<!--                                         <p class="btn-add"> -->
+<!--                                             <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p> -->
+<!--                                         <p class="btn-details"> -->
+<!--                                             <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p> -->
+<!--                                     </div> -->
+<!--                                     <div class="clearfix"> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="col-sm-3"> -->
+<!--                             <div class="col-item"> -->
+<!--                                 <div class="photo"> -->
+<!--                                     <img src="product/m3.jpg" class="img-responsive" alt="a" /> -->
+<!--                                 </div> -->
+<!--                                 <div class="info"> -->
+<!--                                     <div class="row"> -->
+<!--                                         <div class="price col-md-6"> -->
+<!--                                             <h5> -->
+<!--                                                 Grouped Product</h5> -->
+<!--                                             <h5 class="price-text-color"> -->
+<!--                                                 $249.99</h5> -->
+<!--                                         </div> -->
+<!--                                         <div class="rating hidden-sm col-md-6"> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="separator clear-left"> -->
+<!--                                         <p class="btn-add"> -->
+<!--                                             <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p> -->
+<!--                                         <p class="btn-details"> -->
+<!--                                             <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p> -->
+<!--                                     </div> -->
+<!--                                     <div class="clearfix"> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="col-sm-3"> -->
+<!--                             <div class="col-item"> -->
+<!--                                 <div class="photo"> -->
+<!--                                     <img src="product/p4.jpg" class="img-responsive" alt="a" /> -->
+<!--                                 </div> -->
+<!--                                 <div class="info"> -->
+<!--                                     <div class="row"> -->
+<!--                                         <div class="price col-md-6"> -->
+<!--                                             <h5> -->
+<!--                                                 Product with Variants</h5> -->
+<!--                                             <h5 class="price-text-color"> -->
+<!--                                                 $149.99</h5> -->
+<!--                                         </div> -->
+<!--                                         <div class="rating hidden-sm col-md-6"> -->
+<!--                                             <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="fa fa-star"></i> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="separator clear-left"> -->
+<!--                                         <p class="btn-add"> -->
+<!--                                             <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p> -->
+<!--                                         <p class="btn-details"> -->
+<!--                                             <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p> -->
+<!--                                     </div> -->
+<!--                                     <div class="clearfix"> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="col-sm-3"> -->
+<!--                             <div class="col-item"> -->
+<!--                                 <div class="photo"> -->
+<!--                                     <img src="product/m4.jpg" class="img-responsive" alt="a" /> -->
+<!--                                 </div> -->
+<!--                                 <div class="info"> -->
+<!--                                     <div class="row"> -->
+<!--                                         <div class="price col-md-6"> -->
+<!--                                             <h5> -->
+<!--                                                 Product with Variants</h5> -->
+<!--                                             <h5 class="price-text-color"> -->
+<!--                                                 $199.99</h5> -->
+<!--                                         </div> -->
+<!--                                         <div class="rating hidden-sm col-md-6"> -->
+<!--                                             <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="fa fa-star"></i> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="separator clear-left"> -->
+<!--                                         <p class="btn-add"> -->
+<!--                                             <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p> -->
+<!--                                         <p class="btn-details"> -->
+<!--                                             <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p> -->
+<!--                                     </div> -->
+<!--                                     <div class="clearfix"> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
+<!--     <div class="row"> -->
+<!--         <div class="row"> -->
+<!--             <div class="col-md-9"> -->
+<!--                 <h3> -->
+<!--                     New Arrivals</h3> -->
+<!--             </div> -->
+<!--             <div class="col-md-3"> -->
+<!--                 Controls -->
+<!--                 <div class="controls pull-right hidden-xs"> -->
+<!--                     <a class="left fa fa-chevron-left btn btn-danger" href="#carousel-example-generic" -->
+<!--                         data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-danger" href="#carousel-example-generic" -->
+<!--                             data-slide="next"></a> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--         <div id="carousel-example-generic" class="carousel slide hidden-xs" data-ride="carousel"> -->
+<!--             Wrapper for slides -->
+<!--             <div class="carousel-inner"> -->
+<!--                 <div class="item active"> -->
+<!--                     <div class="row"> -->
+<!--                         <div class="col-sm-4"> -->
+<!--                             <div class="col-item"> -->
+<!--                                 <div class="photo"> -->
+<!--                                     <img src="product/k1.jpg" class="img-responsive" alt="a" /> -->
+<!--                                 </div> -->
+<!--                                 <div class="info"> -->
+<!--                                     <div class="row"> -->
+<!--                                         <div class="price col-md-6"> -->
+<!--                                             <h5> -->
+<!--                                                 sample Product</h5> -->
+<!--                                             <h5 class="price-text-color"> -->
+<!--                                                 $199.99</h5> -->
+<!--                                         </div> -->
+<!--                                         <div class="rating hidden-sm col-md-6"> -->
+<!--                                             <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="fa fa-star"></i> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="separator clear-left"> -->
+<!--                                         <p class="btn-add"> -->
+<!--                                             <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p> -->
+<!--                                         <p class="btn-details"> -->
+<!--                                             <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p> -->
+<!--                                     </div> -->
+<!--                                     <div class="clearfix"> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="col-sm-4"> -->
+<!--                             <div class="col-item"> -->
+<!--                                 <div class="photo"> -->
+<!--                                     <img src="product/k2.jpg" class="img-responsive" alt="a" /> -->
+<!--                                 </div> -->
+<!--                                 <div class="info"> -->
+<!--                                     <div class="row"> -->
+<!--                                         <div class="price col-md-6"> -->
+<!--                                             <h5> -->
+<!--                                                 Product Example</h5> -->
+<!--                                             <h5 class="price-text-color"> -->
+<!--                                                 $249.99</h5> -->
+<!--                                         </div> -->
+<!--                                         <div class="rating hidden-sm col-md-6"> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="separator clear-left"> -->
+<!--                                         <p class="btn-add"> -->
+<!--                                             <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p> -->
+<!--                                         <p class="btn-details"> -->
+<!--                                             <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p> -->
+<!--                                     </div> -->
+<!--                                     <div class="clearfix"> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="col-sm-4"> -->
+<!--                             <div class="col-item"> -->
+<!--                                 <div class="photo"> -->
+<!--                                     <img src="product/k3.jpg" class="img-responsive" alt="a" /> -->
+<!--                                 </div> -->
+<!--                                 <div class="info"> -->
+<!--                                     <div class="row"> -->
+<!--                                         <div class="price col-md-6"> -->
+<!--                                             <h5> -->
+<!--                                                 Next Sample Product</h5> -->
+<!--                                             <h5 class="price-text-color"> -->
+<!--                                                 $149.99</h5> -->
+<!--                                         </div> -->
+<!--                                         <div class="rating hidden-sm col-md-6"> -->
+<!--                                             <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="fa fa-star"></i> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="separator clear-left"> -->
+<!--                                         <p class="btn-add"> -->
+<!--                                             <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p> -->
+<!--                                         <p class="btn-details"> -->
+<!--                                             <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p> -->
+<!--                                     </div> -->
+<!--                                     <div class="clearfix"> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="item"> -->
+<!--                     <div class="row"> -->
+<!--                         <div class="col-sm-4"> -->
+<!--                             <div class="col-item"> -->
+<!--                                 <div class="photo"> -->
+<!--                                     <img src="product/k4.jpg" class="img-responsive" alt="a" /> -->
+<!--                                 </div> -->
+<!--                                 <div class="info"> -->
+<!--                                     <div class="row"> -->
+<!--                                         <div class="price col-md-6"> -->
+<!--                                             <h5> -->
+<!--                                                 Product with Variants</h5> -->
+<!--                                             <h5 class="price-text-color"> -->
+<!--                                                 $199.99</h5> -->
+<!--                                         </div> -->
+<!--                                         <div class="rating hidden-sm col-md-6"> -->
+<!--                                             <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="fa fa-star"></i> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="separator clear-left"> -->
+<!--                                         <p class="btn-add"> -->
+<!--                                             <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p> -->
+<!--                                         <p class="btn-details"> -->
+<!--                                             <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p> -->
+<!--                                     </div> -->
+<!--                                     <div class="clearfix"> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="col-sm-4"> -->
+<!--                             <div class="col-item"> -->
+<!--                                 <div class="photo"> -->
+<!--                                     <img src="product/k5.jpg" class="img-responsive" alt="a" /> -->
+<!--                                 </div> -->
+<!--                                 <div class="info"> -->
+<!--                                     <div class="row"> -->
+<!--                                         <div class="price col-md-6"> -->
+<!--                                             <h5> -->
+<!--                                                 Grouped Product</h5> -->
+<!--                                             <h5 class="price-text-color"> -->
+<!--                                                 $249.99</h5> -->
+<!--                                         </div> -->
+<!--                                         <div class="rating hidden-sm col-md-6"> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="separator clear-left"> -->
+<!--                                         <p class="btn-add"> -->
+<!--                                             <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p> -->
+<!--                                         <p class="btn-details"> -->
+<!--                                             <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p> -->
+<!--                                     </div> -->
+<!--                                     <div class="clearfix"> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="col-sm-4"> -->
+<!--                             <div class="col-item"> -->
+<!--                                 <div class="photo"> -->
+<!--                                     <img src="product/k6.jpg" class="img-responsive" alt="a" /> -->
+<!--                                 </div> -->
+<!--                                 <div class="info"> -->
+<!--                                     <div class="row"> -->
+<!--                                         <div class="price col-md-6"> -->
+<!--                                             <h5> -->
+<!--                                                 Product with Variants</h5> -->
+<!--                                             <h5 class="price-text-color"> -->
+<!--                                                 $149.99</h5> -->
+<!--                                         </div> -->
+<!--                                         <div class="rating hidden-sm col-md-6"> -->
+<!--                                             <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star"> -->
+<!--                                             </i><i class="fa fa-star"></i> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="separator clear-left"> -->
+<!--                                         <p class="btn-add"> -->
+<!--                                             <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a></p> -->
+<!--                                         <p class="btn-details"> -->
+<!--                                             <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p> -->
+<!--                                     </div> -->
+<!--                                     <div class="clearfix"> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
+<!-- </div> -->
+       
 </body>
 </html>

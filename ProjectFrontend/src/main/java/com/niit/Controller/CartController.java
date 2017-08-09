@@ -92,13 +92,13 @@ public class CartController
 			User u = userDao.getUseremail(currusername);
 		        Cart c=u.getCart();
 				List<CartItems> cartItem = cartItemsDao.getlist(u.getCart().getCartId());
-//				if(cartItem==null ||cartItem.isEmpty())
-//				{
-//					session.setAttribute("items",0);
-//					model.addAttribute("gtotal",0.0);
-//					model.addAttribute("msg", "no Items is added to cart");
-//					return "viewcart";		
-//				}
+				if(cartItem==null ||cartItem.isEmpty())
+				{
+					session.setAttribute("items",0);
+					model.addAttribute("gtotal",0.0);
+					model.addAttribute("msg", "no Items is added to cart");
+					return "viewcart";		
+				}
 				
 				model.addAttribute("cartItems", cartItem);
 				model.addAttribute("gtotal",c.getGrandtotal());
@@ -112,34 +112,44 @@ public class CartController
 //		}
 	}
 	
-	@RequestMapping(value="/Remove/{p_id}")
-	public String RemoveFromCart(@PathVariable("p_id") String id)
+	@RequestMapping(value="/Remove/{carId}")
+	public ModelAndView RemoveFromCart(@PathVariable("carId") String id)
 	{
+		ModelAndView obj= new ModelAndView("redirect:/viewcart");
 		cartItems=cartItemsDao.get(id);
 		Cart c=cartItems.getCart();
 		c.setGrandtotal(c.getGrandtotal()-cartItems.getPrice());
 		c.setTotalitem(c.getTotalitem()-1);
 		cartDao.saveorupdate(c);
-		CartItems cartiitemss = cartItemsDao.get(cartItems.getCarId()) ;
+		
 		cartItemsDao.delete(cartItems.getCarId());
-		return "redirect:/viewcart";
+		return obj;
 	}
 	
 	@RequestMapping(value="/Removeall")
 	public String RemoveallFromCart(Model model,HttpSession session)
 	{
-		Cart c=cartDao.get((String)session.getAttribute("cartId"));
-		List<CartItems> cartItems=cartItemsDao.getlist((String)session.getAttribute("cartId"));
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken))
+		{
+			String currusername = authentication.getName();
+			User u = userDao.getUseremail(currusername);
+		Cart c=cartDao.get(u.getCart().getCartId());
+		List<CartItems> cartItems=cartItemsDao.getlist(u.getCart().getCartId());
 		for(CartItems g:cartItems)
 		{
-			CartItems cartiitems=cartItemsDao.get(g.getCarId());
-		  cartItemsDao.delete(g.getCarId());
+			cartItemsDao.delete(g.getCarId());
 		}
 		c.setGrandtotal(0.0);;
 		c.setTotalitem(0);
 		cartDao.saveorupdate(c);
 		session.setAttribute("items",c.getTotalitem());
 		return "redirect:/viewcart";
+	}
+		else
+		{
+			return "redirect:/";
+		}
 	}
 	
 //	@RequestMapping("/addtocartR/{p_id}")
