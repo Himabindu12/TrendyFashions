@@ -19,11 +19,14 @@ public class UserController {
 	User user;
 	@Autowired
 	UserDao userDao;
+	@Autowired
+	Billing billing;
 	@RequestMapping("/signup")
 	public ModelAndView userform() 
 	{
 		List<User> listuser=userDao.list(); 
 		ModelAndView obj = new ModelAndView("signup");
+		user.setBilling(billing);
 		obj.addObject("user", new User());
 		obj.addObject("users",listuser);
 		return obj;
@@ -34,8 +37,7 @@ public class UserController {
 		ModelAndView obj = new ModelAndView("redirect:/");
 		Cart cart= new Cart();
 		user.setCart(cart);
-		Billing bill= new Billing();
-		user.setBilling(bill);
+		
 		if(userDao.saveorupdate(user))
 		{
 	       obj.addObject("msg","user is added successfuly");  		

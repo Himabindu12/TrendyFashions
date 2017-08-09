@@ -21,7 +21,7 @@
   <script>
  var app = angular.module('myApp', []);
  app.controller('myCtrl', function($scope, $http){
-	 $http.get("http://localhost:8019/kingfisherfrontend/SendMail")
+	 $http.get("http://localhost:8080/ProjectFrontend/SendMail")
 	 });
  </script>
  </head>
@@ -64,7 +64,7 @@ legend
       <li><a href="<c:url value="/aboutus"/>" style="color:white">About Us</a></li>
 	   <li><a href="<c:url value="/contactus"/>" style="color:white">Contact Us</a></li>
 	   <c1:if test="${pageContext.request.userPrincipal.name!=null}">
-	   <security:authorize access="hasRole('ROLE_ADMIN)">
+	   <security:authorize access="hasRole('ROLE_ADMIN')">
 	    <li><a href="<c:url value="/category"/>" style="color:white">Add Category</a></li>
       <li><a href="<c:url value="/supplier"/>" style="color:white">Add Supplier</a></li>
 	   <li><a href="<c:url value="/product"/>" style="color:white">Add Product</a></li>
@@ -120,9 +120,9 @@ legend
                                                 <table class="table" style="border: 1px solid black; border-collapse: collapse;">
                                                
 		                                     <tr style="border: 1px solid black; border-collapse: collapse;"><td style="border: 1px solid black; border-collapse: collapse;">   <p>Email: </p></td>
-		                                     <td style="border: 1px solid black; border-collapse: collapse;">   <p>${billing.getEmail() } </p></td></tr>
+		                                     <td style="border: 1px solid black; border-collapse: collapse;">   <p>${billing.getEmail()} </p></td></tr>
                                              <tr style="border: 1px solid black; border-collapse: collapse;padding: 15px">  <td style="border: 1px solid black; border-collapse: collapse;"> <p>Phone: </p></td>
-                                             <td style="border: 1px solid black; border-collapse: collapse;"> <p>${billing.getPhone()} </p></td></tr>
+                                             <td style="border: 1px solid black; border-collapse: collapse;"> <p>${billing.getMobile()} </p></td></tr>
                                               <tr style="border: 1px solid black; border-collapse: collapse;"> <td style="border: 1px solid black; border-collapse: collapse;"> <p>City: </p></td>
                                               <td style="border: 1px solid black; border-collapse: collapse;"> <p>${billing.getCity()} </p></td></tr>
                                                 <tr style="border: 1px solid black; border-collapse: collapse;"><td style="border: 1px solid black; border-collapse: collapse;"><p>Country: </p></td>
@@ -139,9 +139,9 @@ legend
 											<center>
                                                 <h4>Shipment Address</h4>
                                                <table class="table" style="border: 1px solid black; border-collapse: collapse;">
-                                               <tr style="border: 1px solid black; border-collapse: collapse;"><td style="border: 1px solid black; border-collapse: collapse;">Name:</td> <td style="border: 1px solid black; border-collapse: collapse;"><p>${shippingAddress.getFirstname()}  ${shippingAddress.getLastname()}.</p></td></tr>
+                                               <tr style="border: 1px solid black; border-collapse: collapse;"><td style="border: 1px solid black; border-collapse: collapse;">Name:</td> <td style="border: 1px solid black; border-collapse: collapse;"><p>${shippingAddress.getFirstName()}  ${shippingAddress.getLastName()}.</p></td></tr>
                                                 <tr style="border: 1px solid black; border-collapse: collapse;"><td style="border: 1px solid black; border-collapse: collapse;"><p>Email:</td><td style="border: 1px solid black; border-collapse: collapse;">${shippingAddress.getEmail()} .</p></td></tr>
-                                               <tr style="border: 1px solid black; border-collapse: collapse;"><td style="border: 1px solid black; border-collapse: collapse;"> <p>Phone:</td><td style="border: 1px solid black; border-collapse: collapse;">${shippingAddress.getMono()} .</p></td></tr>
+                                               <tr style="border: 1px solid black; border-collapse: collapse;"><td style="border: 1px solid black; border-collapse: collapse;"> <p>Phone:</td><td style="border: 1px solid black; border-collapse: collapse;">${shippingAddress.getMobile()} .</p></td></tr>
                                                 <tr style="border: 1px solid black; border-collapse: collapse;"><td style="border: 1px solid black; border-collapse: collapse;"><p>City:</td><td style="border: 1px solid black; border-collapse: collapse;">${shippingAddress.getCity()} .</p></td></tr>
                                                <tr style="border: 1px solid black; border-collapse: collapse;"><td style="border: 1px solid black; border-collapse: collapse;"> <p>Country:</td><td style="border: 1px solid black; border-collapse: collapse;">${shippingAddress.getCountry()} .</p></td></tr>
                                                <tr style="border: 1px solid black; border-collapse: collapse;"><td style="border: 1px solid black; border-collapse: collapse;"> <p>House Number:</td><td style="border: 1px solid black; border-collapse: collapse;">${shippingAddress.getHouseno()} .</p></td></tr>
@@ -174,11 +174,11 @@ legend
    
     <c1:if test="${prot!=null}">
       <tr>
-        <td style="border: 1px solid black"><img src="<c:url value='/resource/images/${prot.getP_id()}.jpg'/>" width=150px height=200px></td>
-        <td style="border: 1px solid black">${prot.getP_Name()}</td>
+        <td style="border: 1px solid black"><img src="<c:url value='/resources/images/${prot.getProdId()}.jpg'/>" width=150px height=200px></td>
+        <td style="border: 1px solid black">${prot.getProdName()}</td>
 <%--         <td>${product.getDes()}</td> --%>
-        <td style="border: 1px solid black">${prot.getCategory().getCat_name()}</td>
-        <td style="border: 1px solid black">${prot.getSeller().getName()}</td>
+        <td style="border: 1px solid black">${prot.getCategory().getCatName()}</td>
+        <td style="border: 1px solid black">${prot.getSupplier().getSupName()}</td>
         <td style="border: 1px solid black">${prot.getPrice()}</td>
       </tr>
       </c1:if>
@@ -186,10 +186,10 @@ legend
      <c1:forEach items="${cartItems}" var="c1">
       <tr>
         <td style="border: 1px solid black"><img src=""></td>
-        <td style="border: 1px solid black">${c1.getProduct().getP_Name()}</td>
+        <td style="border: 1px solid black">${c1.getProduct().getProdName()}</td>
 <%--         <td>${c1.getproduct.getDes()}</td> --%>
-        <td style="border: 1px solid black">${c1.getProduct().getCategory().getCat_name()}</td>
-        <td style="border: 1px solid black">${c1.getProduct().getSeller().getName()}</td>
+        <td style="border: 1px solid black">${c1.getProduct().getCategory().getCatName()}</td>
+        <td style="border: 1px solid black">${c1.getProduct().getSupplier().getSupName()}</td>
         <td style="border: 1px solid black">${c1.getProduct().getPrice()}</td>
       </tr>
       </c1:forEach>
@@ -199,7 +199,7 @@ legend
   </tbody>
  </table>
      <p calss="pull-left">Total price=Rs${prot.getPrice()}</p>
-			<h2> Order will Be deliverde to You with in 7 busisness days</h2>						
+			<h2> Order will Be delivered to You with in 7 busisness days</h2>						
 			</div>
 									</div>
 									</div>

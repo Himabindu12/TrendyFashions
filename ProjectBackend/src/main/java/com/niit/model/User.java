@@ -2,6 +2,7 @@ package com.niit.model;
 
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,7 +24,7 @@ public class User {
     private String umail;
     private String mobile;
     private String role="ROLE_USER";
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="Billing_Id")
     private Billing billing;
     

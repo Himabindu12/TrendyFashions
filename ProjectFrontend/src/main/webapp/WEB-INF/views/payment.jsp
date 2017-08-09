@@ -22,7 +22,7 @@
   <script>
  var app = angular.module('myApp', []);
  app.controller('myCtrl', function($scope, $http){
-	 $http.get("http://localhost:8019/kingfisherfrontend/SendMail")
+	 $http.get("http://localhost:8080/ProjectFrontend/SendMail")
 	 });
  </script>
  
@@ -67,7 +67,7 @@ legend
       <li><a href="<c:url value="/aboutus"/>" style="color:white">About Us</a></li>
 	   <li><a href="<c:url value="/contactus"/>" style="color:white">Contact Us</a></li>
 	   <c1:if test="${pageContext.request.userPrincipal.name!=null}">
-	   <security:authorize access="hasRole('ROLE_ADMIN)">
+	   <security:authorize access="hasRole('ROLE_ADMIN')">
 	    <li><a href="<c:url value="/category"/>" style="color:white">Add Category</a></li>
       <li><a href="<c:url value="/supplier"/>" style="color:white">Add Supplier</a></li>
 	   <li><a href="<c:url value="/product"/>" style="color:white">Add Product</a></li>
@@ -105,27 +105,25 @@ legend
       <div id="collapse1" class="panel-collapse collapse in">
         <div class="panel-body">
         <c:url value="/payment" var="pa"/>
-         <form:form action="${pa}" method="post" id="myForm">
-<!--          <div class="checkbox"> -->
-<!--   			<label>  -->
-<!--           <input type="checkbox" value="1" name="payb" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">Cash on Delivery -->
-<!--           </label> -->
-<!-- </div> -->
+         
           
-           <div class="form-group">
+  <div class="form-group">
     <div class="checkbox">
         <label data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
             <input type="checkbox" value="1" name="payb" />Cash on Delivery
         </label>
     </div>
 </div>
+<form action="${pa}" method="post" id="myForm">
 <div id="collapseOne" aria-expanded="false" class="collapse">
     <div class="well">Your one time password has been sent to your registered mail id.</div>
-    Enter the otp:<input ng-app="myApp" ng-controller="myCtrl" type="text" name="otp">
+    Enter the otp:<input ng-app="myApp" ng-controller="myCtrl" type="text" name="payb2">
 </div>
-<a href="<c:url value="/payment"/>"><input type="submit" class="btn btn-danger btn-block"  value="pay">
+
+
+<input type="submit" class="btn btn-danger btn-block"  value="pay">
           </a>
-		</form:form>
+		</form>
 </div></div>
 		</div>
       </div>

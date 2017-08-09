@@ -36,7 +36,7 @@ public class BillingDaoImpl implements BillingDao{
 	}
 	@Transactional
 	public Billing get(String bid) {
-		String f1 = "from Billing where billId='" + bid + "'";
+		String f1 = "from Billing where uid='" +bid + "'";
 		Query w = sessionFactory.getCurrentSession().createQuery(f1);
 		List<Billing> list = (List<Billing>) w.list();
 		if (list == null || list.isEmpty()) 

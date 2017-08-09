@@ -57,6 +57,18 @@ public class ShippingDaoImpl implements ShippingDao
 		return ships;
 
 	}
+	@Override
+	public List<Shipping> getaddbyuser(String u_id) {
+		String q1 ="from Shipping where uid='"+u_id+"'";
+		Query w = sessionFactory.getCurrentSession().createQuery(q1);
+		@SuppressWarnings("unchecked")
+		List<Shipping> list = (List<Shipping>) w.list();
+		if (list == null || list.isEmpty()) {
+			return null;
+		}
+		return list;
+		}
+
 
 }
 

@@ -2,6 +2,8 @@ package com.niit.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -21,6 +23,11 @@ public class Shipping {
 	private String mobile;
 	private String firstName;
 	private String lastName;
+	
+	@ManyToOne
+	  @JoinColumn(name="uid")
+	  User user;
+	  
 	public String getShipId() {
 		return shipId;
 	}
@@ -74,6 +81,12 @@ public class Shipping {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

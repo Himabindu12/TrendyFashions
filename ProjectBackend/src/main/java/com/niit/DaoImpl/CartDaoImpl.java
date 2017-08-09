@@ -39,7 +39,7 @@ public class CartDaoImpl implements CartDao{
 	}
 	@Transactional
 	public Cart get(String crid) {
-		String t1 = "from Cart where carId='" + crid + "'";
+		String t1 = "from Cart where cartId='" + crid + "'";
 		Query w = sessionFactory.getCurrentSession().createQuery(t1);
 		List<Cart> list = (List<Cart>) w.list();
 		if (list == null || list.isEmpty()) 

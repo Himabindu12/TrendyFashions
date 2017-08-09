@@ -1,15 +1,31 @@
 package com.niit.Controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.niit.Dao.ProductDao;
+import com.niit.model.Product;
 
 @Controller
 public class HomeController {
 
+	@Autowired
+	Product product;
+	@Autowired
+	ProductDao productDao;
+	
 	@RequestMapping("/")
-	public String home()
+	public ModelAndView productform() 
 	{
-		return "home";
+		List<Product> listproduct=productDao.list();
+		ModelAndView obj = new ModelAndView("home");
+		obj.addObject("product", new Product());
+		obj.addObject("prods",listproduct);		
+		return obj;
 	}
 	
 	@RequestMapping("/kids")
@@ -18,21 +34,17 @@ public class HomeController {
 		return "kidspage";
 	}
 
-	@RequestMapping("/payment")
-	public String payment()
-	{
-		return "payment";
-	}
+	
 	@RequestMapping("/thankyou")
 	public String thankyou()
 	{
 		return "thankyou";
 	}
-	@RequestMapping("/viewcart")
-	public String viewcart()
-	{
-		return "viewcart";
-	}
+//	@RequestMapping("/viewcart")
+//	public String viewcart()
+//	{
+//		return "viewcart";
+//	}
 	@RequestMapping("/orderconfirm")
 	public String orderconfirm()
 	{
@@ -48,4 +60,7 @@ public class HomeController {
 	{
 		return "men";
 	}
+	
+	
+
 }

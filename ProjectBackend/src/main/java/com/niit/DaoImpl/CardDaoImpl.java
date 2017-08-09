@@ -55,6 +55,19 @@ public class CardDaoImpl implements CardDao{
 
 		return cards;
 	}
+	
+	@Transactional
+	public List<Card> getcardbyuser(String uid) {
+		String q1 ="from Card where uid='"+uid+"'";
+		Query w = sessionFactory.getCurrentSession().createQuery(q1);
+		@SuppressWarnings("unchecked")
+		List<Card> list = (List<Card>) w.list();
+		if (list == null || list.isEmpty()) {
+			return null;
+		}
+		return list;
+	}
+
 		
 	}
 	

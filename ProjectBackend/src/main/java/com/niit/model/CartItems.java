@@ -1,5 +1,7 @@
 package com.niit.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -22,6 +24,10 @@ public class CartItems {
 	@OneToOne
 	@JoinColumn(name="prodId")
 	private Product product;
+	public CartItems() {
+		
+		this.carId ="CITEMS"+UUID.randomUUID().toString().substring(30).toUpperCase();
+	}
 	public Cart getCart() {
 		return cart;
 	}

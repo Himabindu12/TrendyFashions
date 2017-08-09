@@ -67,8 +67,8 @@ public class UserDaoImpl implements UserDao{
 		
 	}
 	@Transactional
-	public User isvalid(String email, String pwd) {
-		String q1="from User where u_email='"+email+"'and u_psw='"+pwd+"'";
+	public User isvalid(String umail, String upwd) {
+		String q1="from User where umail='"+umail+"'and upwd='"+upwd+"'";
 		Query w = sessionFactory.getCurrentSession().createQuery(q1);
 		List<User> list = (List<User>) w.list();
 		if (list == null || list.isEmpty()) 
@@ -78,8 +78,8 @@ public class UserDaoImpl implements UserDao{
 		   return list.get(0);
 	   }
 	@Transactional
-	public User getUseremail(String email) {
-		String q1="from User where u_email='"+email+"'";
+	public User getUseremail(String umail) {
+		String q1="from User where umail='"+umail+"'";
 		Query w = sessionFactory.getCurrentSession().createQuery(q1);
 		@SuppressWarnings("unchecked")
 		List<User> list = (List<User>) w.list();

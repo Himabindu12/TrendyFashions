@@ -1,9 +1,7 @@
 package com.niit.Controller;
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,112 +21,187 @@ import com.niit.model.CartItems;
 import com.niit.model.Product;
 import com.niit.model.User;
 
+
 @Controller
-public class CartController {
-@Autowired
-User user;
-UserDao userDao;
-@Autowired
-Cart cart;
-CartDao cartDao;
-@Autowired
-CartItems cartItems;
-CartItemsDao cartItemsDao;
-@Autowired
-Product product;
-ProductDao productDao;
-@Autowired
-HttpSession session;
-@RequestMapping("/addtocart/{id}")
-public ModelAndView cart(@PathVariable("id") String id) {
-
-	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	if (!(authentication instanceof AnonymousAuthenticationToken)) {
-		String currusername = authentication.getName();
-		User u = userDao.getUseremail(currusername);
-		if (user == null) {
-			return new ModelAndView("redirect:/");
-		} else {
-
-			cart = u.getCart();
-			product = productDao.get(id);
-			CartItems cartItems = new CartItems();
-			cartItems.setCart(cart);
-			cartItems.setProduct(product);
-			cartItems.setPrice(product.getPrice());
-			cartItemsDao.saveorupdate(cartItems);
-			cart.setGrandtotal(cart.getGrandtotal() + product.getPrice());
-			cart.setTotalitem(cart.getTotalitem() + 1);
-			cartDao.saveorupdate(cart);
-			session.setAttribute("items", cart.getTotalitem());
-			session.setAttribute("gd", cart.getGrandtotal());
-			return new ModelAndView("redirect:/allproducts");
-		}
-	} else {
+public class CartController 
+{
+	@Autowired
+	Product product;
+	@Autowired 
+	ProductDao productDao;
+	
+	@Autowired 
+	User user;
+	@Autowired 
+	UserDao userDao;
+	
+	@Autowired
+	Cart cart;
+	@Autowired
+	CartDao cartDao;
+	
+	@Autowired
+	CartItems cartItems;
+	@Autowired
+	CartItemsDao cartItemsDao;
+	
+	@Autowired
+	HttpSession session;
+	
+	@RequestMapping("/addtocart/{id}")
+	public ModelAndView cart(@PathVariable("id") String id) 
+	{
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+			String currusername = authentication.getName();
+	User u = userDao.getUseremail(currusername);
+	if (user == null)
+	{
 		return new ModelAndView("redirect:/");
-	}
-
-}
-
-
-
-@RequestMapping(value = "/viewcart")
-public String viewcart(Model model, HttpSession session) {
-	System.out.println(1223);
-	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	if (!(authentication instanceof AnonymousAuthenticationToken)) {
-		String currusername = authentication.getName();
-		User u = userDao.getUseremail(currusername);
-	        Cart c=u.getCart();
-			List<CartItems> cartItem = cartItemsDao.getlist(u.getCart().getCartId());
-			if(cartItem==null ||cartItem.isEmpty())
-			{
-				session.setAttribute("items",0);
-				model.addAttribute("gtotal",0.0);
-				model.addAttribute("msg", "no Items is added to cart");
-				return "viewcart";		
-			}
-			model.addAttribute("cartItem", cartItem);
-			model.addAttribute("gtotal",c.getGroand_total());
-			session.setAttribute("items",c.getTotal_item());
-		    session.setAttribute("cartId", c.getCart_id());
-			return "viewcart";		
-		
-	}
+	} 
 	else
 	{
-		return "redirect:/";
+		cart = u.getCart();
+		Product product1 = productDao.get(id);
+		CartItems cartItem = new CartItems();
+		cartItem.setCart(cart);
+		cartItem.setProduct(product1);
+		cartItem.setPrice(product1.getPrice());
+		cartItemsDao.saveorupdate(cartItem);
+		cart.setGrandtotal(cart.getGrandtotal() + product1.getPrice());
+		cart.setTotalitem(cart.getTotalitem() + 1);
+		cartDao.saveorupdate(cart);
+		session.setAttribute("items", cart.getTotalitem());
+		session.setAttribute("gd", cart.getGrandtotal());
+		return new ModelAndView("redirect:/");
+		}
+		}
+		else {
+			return new ModelAndView("redirect:/");
+		}
 	}
 	
-}
-@RequestMapping(value="/Remove/{id}")
-public String RemoveFromCart(@PathVariable("id") String id)
-{
-	cartItem=cartItemDao.getcartItem(id);
-	Cart c=cartItem.getCart();
-	c.setGroand_total(c.getGroand_total()-cartItem.getPrice());
-	c.setTotal_item(c.getTotal_item()-1);
-	cartDao.saveCart(c);
-	cartItemDao.delete(cartItem.getCi_id());
-	return "redirect:/viewcart";
-}
-
-@RequestMapping(value="/Removeall")
-public String RemoveallFromCart(Model model,HttpSession session)
-{
-	Cart c=cartDao.getcart((String)session.getAttribute("cartId"));
-	List<CartItem> cartItems=cartItemDao.getlist((String)session.getAttribute("cartId"));
-	for(CartItem g:cartItems)
+	@RequestMapping(value = "/viewcart")
+	public String viewcart(Model model, HttpSession session) 
 	{
-	  cartItemDao.delete(g.getCi_id());
+		System.out.println(1223);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken))
+		{
+			String currusername = authentication.getName();
+			User u = userDao.getUseremail(currusername);
+		        Cart c=u.getCart();
+				List<CartItems> cartItem = cartItemsDao.getlist(u.getCart().getCartId());
+//				if(cartItem==null ||cartItem.isEmpty())
+//				{
+//					session.setAttribute("items",0);
+//					model.addAttribute("gtotal",0.0);
+//					model.addAttribute("msg", "no Items is added to cart");
+//					return "viewcart";		
+//				}
+				
+				model.addAttribute("cartItems", cartItem);
+				model.addAttribute("gtotal",c.getGrandtotal());
+				session.setAttribute("items",c.getTotalitem());
+			    session.setAttribute("cartId", c.getCartId());
+				return "viewcart";		
 	}
-	c.setGroand_total(0.0);
-	c.setTotal_item(0);
-	cartDao.saveCart(c);
-	session.setAttribute("items",c.getTotal_item());
-	return "redirect:/viewcart";
-}
+//		else
+//		{
+			return "redirect:/viewcart";
+//		}
+	}
+	
+	@RequestMapping(value="/Remove/{p_id}")
+	public String RemoveFromCart(@PathVariable("p_id") String id)
+	{
+		cartItems=cartItemsDao.get(id);
+		Cart c=cartItems.getCart();
+		c.setGrandtotal(c.getGrandtotal()-cartItems.getPrice());
+		c.setTotalitem(c.getTotalitem()-1);
+		cartDao.saveorupdate(c);
+		CartItems cartiitemss = cartItemsDao.get(cartItems.getCarId()) ;
+		cartItemsDao.delete(cartItems.getCarId());
+		return "redirect:/viewcart";
+	}
+	
+	@RequestMapping(value="/Removeall")
+	public String RemoveallFromCart(Model model,HttpSession session)
+	{
+		Cart c=cartDao.get((String)session.getAttribute("cartId"));
+		List<CartItems> cartItems=cartItemsDao.getlist((String)session.getAttribute("cartId"));
+		for(CartItems g:cartItems)
+		{
+			CartItems cartiitems=cartItemsDao.get(g.getCarId());
+		  cartItemsDao.delete(g.getCarId());
+		}
+		c.setGrandtotal(0.0);;
+		c.setTotalitem(0);
+		cartDao.saveorupdate(c);
+		session.setAttribute("items",c.getTotalitem());
+		return "redirect:/viewcart";
+	}
+	
+//	@RequestMapping("/addtocartR/{p_id}")
+//	public ModelAndView cartr(@PathVariable("p_id") String id) {
+//
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+//			String currusername = authentication.getName();
+//			User u = userDao.getUseremail(currusername);
+//			if (user == null) {
+//				return new ModelAndView("redirect:/");
+//			} else {
+//
+//				cart = u.getCart();
+//				product = productDao.getProduct(id);
+//				CartItems cartItem = new CartItems();
+//				cartItem.setCart(cart);
+//				cartItem.setProduct(product);
+//				cartItem.setPrice(product.getP_c());
+//				cartItemDao.saveOrUpdate(cartItem);
+//				cart.setGrandtotal(cart.getGrandtotal() + product.getP_c());
+//				cart.setTotalitems(cart.getTotalitems() + 1);
+//				cartDao.saveOrUpdate(cart);
+//				session.setAttribute("items", cart.getTotalitems());
+//				session.setAttribute("gd", cart.getGrandtotal());
+//				return new ModelAndView("redirect:/viewcart");
+//			}
+//		} else {
+//			return new ModelAndView("redirect:/");
+//		}
+//
+//	}
+//	@RequestMapping("/addtocartC/{p_id}")
+//	public ModelAndView cartc(@PathVariable("p_id") String id) {
+//
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+//			String currusername = authentication.getName();
+//			User u = userDao.getUseremail(currusername);
+//			if (user == null) {
+//				return new ModelAndView("redirect:/");
+//			} else {
+//
+//				cart = u.getCart();
+//				product = productDao.getProduct(id);
+//				CartItems cartItem = new CartItems();
+//				cartItem.setCart(cart);
+//				cartItem.setProduct(product);
+//				cartItem.setPrice(product.getP_c());
+//				cartItemDao.saveOrUpdate(cartItem);
+//				cart.setGrandtotal(cart.getGrandtotal() + product.getP_c());
+//				cart.setTotalitems(cart.getTotalitems() + 1);
+//				cartDao.saveOrUpdate(cart);
+//				session.setAttribute("items", cart.getTotalitems());
+//				session.setAttribute("gd", cart.getGrandtotal());
+//				return new ModelAndView("redirect:/viewcart");
+//			}
+//		} else {
+//			return new ModelAndView("redirect:/");
+//		}
+//
+//	}
 
-}
 
 }

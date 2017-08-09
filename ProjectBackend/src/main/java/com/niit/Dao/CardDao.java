@@ -13,5 +13,7 @@ public interface CardDao {
 	public Card get(String carId);
 
 	public List<Card> list();
+
+	List<Card> getcardbyuser(String uid);
 }
 

@@ -1,6 +1,6 @@
 <%@ taglib prefix="c1" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags"%>
-<%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
 <c:url value="/resources/css" var="css"/>
@@ -64,7 +64,7 @@ legend
       <li><a href="<c:url value="/aboutus"/>" style="color:white">About Us</a></li>
 	   <li><a href="<c:url value="/contactus"/>" style="color:white">Contact Us</a></li>
 	   <c1:if test="${pageContext.request.userPrincipal.name!=null}">
-	   <security:authorize access="hasRole('ROLE_ADMIN)">
+	   <security:authorize access="hasRole('ROLE_ADMIN')">
 	    <li><a href="<c:url value="/category"/>" style="color:white">Add Category</a></li>
       <li><a href="<c:url value="/supplier"/>" style="color:white">Add Supplier</a></li>
 	   <li><a href="<c:url value="/product"/>" style="color:white">Add Product</a></li>
@@ -94,10 +94,7 @@ legend
 
 	<div class="row">
 	<div class="span12">
-    <ul class="breadcrumb">
-		<li><a href="index.html">Home</a> <span class="divider">/</span></li>
-		<li class="active">Check Out</li>
-    </ul>
+   
 	<div class="well well-small">
 		<h1>Check Out <small class="pull-right"> ${items} Items are in the cart </small></h1>
 	<hr class="soften"/>	
@@ -109,25 +106,25 @@ legend
                   <th>NAME</th>
 				  <th>	PRICE </th>
                   <th>Remove/Buy now</th>
-                  <th>Total</th>	
+                 
 				</tr>
               </thead>
               <tbody>
-                 <c1:forEach items="${cartItem}" var="pro">
+                 <c1:forEach items="${cartItems}" var="pro">
       <tr>
-        <td><img src="<c:url value='/resource/images/${pro.getProduct().getP_id()}.jpg'/>",width=50px, height=20px></td>
-        <td>${pro.getProduct().getP_Name() }</td>
+        <td><img src="<c:url value='/resources/images/${pro.getProduct().getProdId()}.jpg'/>",width=50px, height=20px></td>
+        <td>${pro.getProduct().getProdName() }</td>
         <td>${pro.getProduct().getPrice()}</td>
 <%--         <td>${pro.getProduct().getDes()}</td> --%>
-        <td><a href="<c:url value='/Remove/${pro.getCi_id()}'/>" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Remove</a>/<a href="<c1:url value='/Buy/${pro.getProduct().getP_id()}/${pro.getCi_id()}'/>" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Buy now</a>
+        <td><a href="<c:url value='/Remove/${pro.getCarId()}'/>" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Remove</a>/<a href="<c1:url value='/Buy/${pro.getProduct().getProdId()}/${pro.getCarId()}'/>" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Buy now</a>
         </td>
       </tr>
       </c1:forEach>
                 </tbody>
 
   </table>
-  <center>Total price=${gtotal}</center>
-<center> <a href="<c:url value='/Removeall'/>" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Remove All</a>/<a href="<c1:url value='/Buyall/${pro.getProduct().getP_id()}'/>" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Buy All </a>
+  <center><h2>Total price=${gtotal}</h2></center>
+<center> <a href="<c:url value='/Removeall'/>" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Remove All</a>/<a href="<c1:url value='/Buyall/${pro.getProduct().getProdId()}'/>" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Buy All </a>
   </center></div>
 				
 </body>
