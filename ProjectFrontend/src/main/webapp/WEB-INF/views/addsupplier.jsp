@@ -104,9 +104,9 @@ align: center;
 <fieldset>
 <legend>Add Supplier</legend>
 Supplier Id:<form:input type="text" path="supId"/><br><br>
-Supplier Name:<form:input type="text" path="supName" placeholder="Enter Supplier Name"/><br><br><br>
-Mobile number:<form:input type="text" path="mobile" placeholder="Enter Mobile Number"/><br><br><br>
-Address:<form:input type="text" path="addr" placeholder="Enter Address"/><br><br><br>
+Supplier Name:<form:input type="text" path="supName" placeholder="Enter Supplier Name" required="required"/><br><br><br>
+Mobile number:<form:input type="text" path="mobile" placeholder="Enter Mobile Number" required="required"/><br><br><br>
+Address:<form:input type="text" path="addr" placeholder="Enter Address" required="required"/><br><br><br>
  <input type="submit" value="Submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  <input type="reset" value="Cancel">
  </fieldset>

@@ -104,8 +104,8 @@ align: center;
 <form:form action="${addcat}" method="post" commandName="cat">
 <fieldset>
 <legend>Add Category</legend>
-Category Id: <form:input type="text" path="catId" placeholder="Enter CategoryId"/><br><br>
-Category Name:<form:input type="text" path="catName" placeholder="Enter CategoryName"/><br><br><br>
+Category Id: <form:input type="text" path="catId" placeholder="Enter CategoryId" required="required"/><br><br>
+Category Name:<form:input type="text" path="catName" placeholder="Enter CategoryName" required="required"/><br><br><br>
  <input type="submit" value="Submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  <input type="reset" value="Cancel">
 </fieldset>

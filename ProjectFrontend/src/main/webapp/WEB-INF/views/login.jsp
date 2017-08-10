@@ -93,8 +93,8 @@ legend
 <form:form action="${addlogin}" method="post">
 
 <legend>Login</legend>
-User Id: <input type="text" name="j_username" placeholder="Enter UserId"><br><br>
-Password:<input type="password" name="j_password" placeholder="Enter Password"><br><br><br>
+User Id: <input type="text" name="j_username" placeholder="Enter UserId" required="required"><br><br>
+Password:<input type="password" name="j_password" placeholder="Enter Password"  required="required"><br><br><br>
  <input type="submit" value="Submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  <input type="reset" value="Cancel">
  </fieldset>

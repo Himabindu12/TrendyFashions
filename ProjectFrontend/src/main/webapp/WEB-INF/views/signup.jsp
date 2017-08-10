@@ -95,15 +95,15 @@ legend
 <form:form action="${adduser}" method="post" commandName="user">
 <fieldset>
 <legend>Signup</legend>
-User Id: <form:input type="text" path="uid" placeholder="Enter UserId"/><br><br>
-User Name:<form:input type="text" path="uname" placeholder="Enter UserName"/><br><br><br>
-Email Id:<form:input type="text" path="umail" placeholder="Email Id"/><br><br><br>
-Phone number:<form:input type="text" path="mobile" placeholder="Enter Phone number"/><br><br><br>
-Address:<form:input type="text" path="uaddress" placeholder="Enter Address"/><br><br><br>
-Pass word:<form:input type="password" path="upwd" placeholder="Enter password"/><br><br><br>
-HouseNo:<form:input type="text" path="billing.houseno" placeholder="Enter HouseNo"/><br><br><br>
-Country:<form:input type="text" path="billing.country" placeholder="Enter Country"/><br><br><br>
-PinCode:<form:input type="text" path="billing.pincode" placeholder="Enter Pincode"/><br><br><br>
+<%-- User Id: <form:input type="text" path="uid" placeholder="Enter UserId" /><br><br> --%>
+User Name:<form:input type="text" path="uname" placeholder="Enter UserName" required="required"/><br><br><br>
+Email Id:<form:input type="text" path="umail" placeholder="Email Id" required="required"/><br><br><br>
+Phone number:<form:input type="text" path="mobile" placeholder="Enter Phone number" required="required"/><br><br><br>
+Address:<form:input type="text" path="uaddress" placeholder="Enter Address" required="required"/><br><br><br>
+Pass word:<form:input type="password" path="upwd" placeholder="Enter password" required="required"/><br><br><br>
+HouseNo:<form:input type="text" path="billing.houseno" placeholder="Enter HouseNo" required="required"/><br><br><br>
+Country:<form:input type="text" path="billing.country" placeholder="Enter Country" required="required"/><br><br><br>
+PinCode:<form:input type="text" path="billing.pincode" placeholder="Enter Pincode" required="required"/><br><br><br>
  <input type="submit" value="Submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  <input type="reset" value="Cancel">
 </fieldset>

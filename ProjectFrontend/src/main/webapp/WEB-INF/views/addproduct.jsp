@@ -104,11 +104,11 @@ align: center;
 <form:form action="${addprodu}" method="post" commandName="product" enctype="multipart/form-data">
 <fieldset>
 <legend>Add Product</legend>
-Product Id:<form:input type="text" path="prodId" placeholder="Enter ProductId"/><br><br>
-Product Name:<form:input type="text" path="prodName" placeholder="Enter ProductName"/><br><br><br>
-Price:<form:input type="text" path="price" placeholder="Enter Price"/><br><br><br>
-Quantity:<form:input type="text" path="quantity" placeholder="Enter Quantity"/><br><br><br>
-Description:<form:input type="text" path="prodDescription" placeholder="Enter Description"/><br><br><br>
+Product Id:<form:input type="text" path="prodId" placeholder="Enter ProductId" required="required"/><br><br>
+Product Name:<form:input type="text" path="prodName" placeholder="Enter ProductName" required="required"/><br><br><br>
+Price:<form:input type="text" path="price" placeholder="Enter Price" required="required"/><br><br><br>
+Quantity:<form:input type="text" path="quantity" placeholder="Enter Quantity" required="required"/><br><br><br>
+Description:<form:input type="text" path="prodDescription" placeholder="Enter Description" required="required"/><br><br><br>
 
  <div class="form-group">
  <label for="cat">Category
